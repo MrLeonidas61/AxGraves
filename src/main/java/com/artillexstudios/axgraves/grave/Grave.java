@@ -20,10 +20,7 @@ import com.artillexstudios.axgraves.utils.LocationUtils;
 import com.artillexstudios.axgraves.utils.Utils;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.StorageGui;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.HumanEntity;
@@ -168,6 +165,7 @@ public class Grave {
         }
 
         if (slot.equals(org.bukkit.inventory.EquipmentSlot.HAND) && opener.isSneaking()) {
+            if(opener.getGameMode() == GameMode.SPECTATOR) return;
             if (!CONFIG.getBoolean("enable-instant-pickup", true)) return;
             if (CONFIG.getBoolean("instant-pickup-only-own", false) && !opener.getUniqueId().equals(player.getUniqueId())) return;
 
